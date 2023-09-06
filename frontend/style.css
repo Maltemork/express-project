@@ -6,17 +6,37 @@ body {
     background-color: rgb(26, 26, 26);
 }
 
+button {
+    color: white;
+}
+
+#content-header {
+    margin: 20px auto 20px 50px;
+}
+
+#content-header select {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 7px;
+    background: #557272;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+
+
 #main-container {
     background-color: rgb(44, 44, 44);
     color: white;
-    width: 70em;
-    min-height: 15em;
-    height:fit-content;
+    width: 80%;
+    min-height: 850px;
     margin: 0 auto 0;
     margin-top: 0;
-    display: grid;
     grid-template-columns: 1fr;
 }
+
+/* HEADER SECTION */
 
 #header {
     /* make text not markable */
@@ -25,12 +45,18 @@ body {
     -webkit-user-select: none;
     user-select: none;
     /* styling */
-    width: 70em;
+    width: 100%;
     height: 8em;
     margin: 0px auto 0px;
     background-color: rgb(80, 80, 80);
     padding: auto;
     display: flex;
+}
+
+.active {
+    background-color: rgb(39, 39, 39);
+    color: rgb(0, 255, 0);
+    /* box-shadow: 0px 0px 10px black; */
 }
 
 .header-item {
@@ -45,7 +71,206 @@ body {
 .header-item:hover {
     background-color: gray;
     color: rgb(0, 255, 0);
+    cursor: pointer;
 }
+
+.header-item h3 {
+    margin: 0;
+    margin-top: 30px;
+    padding: 0;
+}
+
+.header-item p {
+    margin-top: 0;
+}
+
+#createIcon {
+    filter: invert(100%);
+}
+
+/* HEADER SECTION END */
+
+
+/* Main content grid */
+
+#main-content-grid {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    height: fit-content;
+}
+
+.grid-item-artist {
+    position: relative;
+    flex: 0 0 23%; 
+    gap: 5px;
+    min-height: 700px;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px;
+    background-color: #424242;
+    text-align: center;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-property: all;
+    border-radius: 10px;
+}
+
+
+
+.artist-title {
+    font-size: 40px;
+    color:rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px black;
+}
+
+.grid-item-artist img {
+    box-shadow: 0px 0px 20px black;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    object-position: top;
+    margin-top: 20px;
+}
+
+.grid-item-artist:hover {
+    scale: 1.02;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-property: all;
+}
+
+.grid-item-artist p {
+    margin: 0 0 0 0;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.grid-item-artist a {
+    position: relative;
+    margin-top: 200px;
+    color: rgb(0, 255, 0);
+    text-decoration: none;
+    text-align: center;
+}
+
+.artist-text-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btns { 
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    position: absolute;
+    margin: 20px auto 20px auto;
+    bottom: 0;
+    width: 95%;
+}
+
+.btns button {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid gray;
+    border-radius: 7px;
+    flex: 0 0 30%; 
+    
+    width: 30%;
+    background: #557272;
+    font-size: 25px;
+    position: relative;
+    
+}
+
+.favorite {
+    background-color:rgb(0, 255, 0);
+    color:rgb(0, 255, 0);
+}
+
+.btns button:hover {
+    background-color: #78a1a1;
+    cursor: pointer;
+}
+
+/* Favorites section */
+
+#favorites-content-grid {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    height: fit-content;
+}
+
+
+
+/* Create form: */
+
+#form-container {
+    padding-right: 2em;
+    padding: 2em;
+    width: 50%;
+    margin: 50px auto 200px auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    row-gap: 10px;
+    background-color:#424242;
+}
+
+#form-container input, textarea {
+    width: 90%;
+}
+
+#form-container :first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    width: 100%;
+}
+
+#form-container hr {
+    
+    grid-column: 1 / -1;
+    width: 90%;
+    margin: 20px auto 20px auto;
+}
+
+
+#form-container label {
+    padding-left: 40px;
+}
+
+#form-container :last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    height: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#424242;
+    color: white;
+    border: 1px solid gray;
+    width: 50%;
+    margin: 0 auto 20px auto;
+}
+
+#form-container button:hover {
+    background-color:#6d6d6d;
+    cursor: pointer;
+}
+
+#form-container ::placeholder {
+    text-align: center;
+}
+
+
+#form-artist-birth {
+    text-align: center;
+}
+
+#form-container h3 {
+    color:rgb(0, 255, 0);
+    font-size: 30px;
+    text-shadow: 5px 5px 5px black;
+}
+
 
 /* Hidden class */
 
@@ -53,4 +278,50 @@ body {
     display: none;
 }
 
-/* Selected section */
+/* Delete dialog */
+
+dialog {
+    background-color:#424242;
+    color: white;
+    border: 1px solid gray;
+}
+
+#dialog-delete-artist {
+    padding: 20px;
+    text-align: center;
+}
+#dialog-delete-artist h2 {
+    padding: 20px;
+    text-align: center;
+}
+
+#dialog-delete-artist input:hover {
+    background-color:#6d6d6d;
+    cursor: pointer;
+}
+
+#delete-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#delete-grid input {
+    text-align: center;
+    height: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#424242;
+    color: white;
+    width: 90%;
+    border: 1px solid gray; 
+    margin: 0 auto 20px auto;
+}
+
+#close-delete-button {
+    background-color:#424242;
+    color: white;
+    position: absolute;
+    margin-bottom: 40px;
+    right: 20px;
+    border: 1px solid gray;
+    width: 20px;
+}

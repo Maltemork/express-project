@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Musikere | Express / Node.js projekt</title>
+</head>
+<body>
+    <div id="main-container">
+        
+            <div id="header">
+                <div id="nav-frontpage" class="header-item active">          
+                    <h3>👁</h3>
+                    <p>VIEW</p>
+                </div>
+                <div id="nav-create" class="header-item" >
+                    <h3 id="createIcon">➕</h3>
+                    <p>CREATE</p>
+                </div>
+                
+                <div id="nav-favorites" class="header-item">
+                    <h3>♥</h3>
+                    <p>FAVORITES</p>
+                </div>
+            </div>
+        
+        <div id="mainpage-content">
+            
+            <div id="frontpage-section" class="">
+                <div id="content-header">
+                    <label for="sort">Sort by: </label>
+                    <select name="sort" id="sortBy">
+                        <option value="name" selected>Name</option>
+                        <option value="age">Age</option>
+                        <option value="careerStart">Career Start</option>
+                    </select>
+                    <label for="display">Show:</label>
+                    <select name="display" id="displayOnly">
+                        <option value="all">All</option>
+                        <option value="pop">Pop</option>
+                        <option value="alternative">Alternative</option>
+                        <option value="rock">Rock</option>
+                        <option value="country">Country</option>
+                        <option value="r&b">R&B</option>
+                        <option value="soul">Soul</option>
+                        <option value="hiphop">Hiphop</option>
+                        <option value="funk">Funk</option>
+                        <option value="indie">Indie</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="folk">Folk</option>
+                    </select>
+                </div>
+                <div id="main-content-grid">
+                    <p>Frontpage</p>
+                </div>
+            </div>
+            <div id="create-section" class="hidden">
+                <div class="content-grid-item">
+                    <div >
+                        <form action="submit" method="post" id="form-container">
+                            <h3>Create a new artist post</h3>
+
+                            <hr>
+
+                            <label for="name">Artist name:</label>
+                            <input type="text" name="name" id="form-artist-name" placeholder="Name" required>
+
+                            <label for="description">Short description:</label>
+                            <textarea name="description" id="form-artist-description" placeholder="Description" maxlength: 200 required style="resize: none"></textarea>
+
+                            <label for="birth">Born:</label>
+                            <input type="date" name="birth" id="form-artist-birth" placeholder="Birthdate" required>
+
+                            <label for="activeSince">Active since:</label>
+                            <input type="number" name="activeSince" id="form-artist-career" placeholder="Career start (year)" required>
+
+                            <label for="genres">Genre(s):</label>
+                            <input type="text" name="genres" id="form-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
+
+                            <label for="label">Labels:</label>
+                            <input type="text" name="label" id="form-artist-label" placeholder="Labels" required>
+
+                            <label for="image">Image:</label>
+                            <input type="url" name="image" id="form-artist-image" placeholder="Insert image URL." required>
+
+                            <label for="website">Website:</label>
+                            <input type="url" name="website" id="form-artist-website" placeholder="Insert website URL." required>
+
+                            <hr>
+
+                            <button type="submit">Submit post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="edit-section" class="hidden">
+                <div class="content-grid-item">
+                    <p>Edit section</p>
+                </div>
+            </div>
+            <div id="favorites-section" class="hidden">
+                <div id="favorites-content-grid">
+                    <p>Favorites</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <dialog id="dialog-delete-artist">
+        <input type="button" value="X" id="close-delete-button">
+        <h2>Are you sure you would like to delete this artist?</h2>
+        <p id="dialog-delete-artist-name"></p>
+        
+        <form action="" id="form-delete-artist">
+          <div id="delete-grid">
+            <input id="btn-yes" type="submit" value="Yes" />
+            <input id="btn-no" type="button" value="No" />
+          </div>
+        </form>
+    </dialog>
+    <script src="frontend.js" type="module"></script>
+</body>
+</html>
