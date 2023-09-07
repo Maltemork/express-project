@@ -1,5 +1,9 @@
 "use strict";
 
+import {
+  displayArtists
+} from "./frontend.js"
+
 const endpoint = "http://localhost:8801";
 
 // Artists array (global);
@@ -80,10 +84,12 @@ async function deleteArtist(id) {
   }
 
   //update a specific artist.
-  async function updateArtist(artist) {
+  async function updateArtist(event, artist) {
+    event.preventDefault();
     console.log(artist);
   
     // Define values.
+    const id = artist.id;
     const name = artist.name; 
     const birthdate = artist.birthdate;
     const activeSince = artist.activeSince;
@@ -96,6 +102,7 @@ async function deleteArtist(id) {
   
     // Define structure of object and hold it.
     const artistToUpdate = {
+      id,
       name,
       birthdate,
       activeSince,
@@ -119,15 +126,23 @@ async function deleteArtist(id) {
 
     if (response.ok) {
       console.log(`${artist.name} has been updated on server.`);
+      return;
     }
   }
   
+  // Edit artist
+
+ 
+
+
+
 
 
 export {
     getArtists,
     updateArtist,
     submitNewArtist,
-    deleteArtist
+    deleteArtist,
+    updateArtist
 };
 

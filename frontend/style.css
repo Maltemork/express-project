@@ -89,7 +89,19 @@ button {
 }
 
 /* HEADER SECTION END */
+#searchField {
+    color: white;
+    height: 3em;
+    background-color: #557272;
+    border: 1px solid gray;
+    width: 30%;
+    position: absolute;
+    right: 10%;
+}
 
+#searchField ::placeholder {
+    color: white;
+}
 
 /* Main content grid */
 
@@ -324,4 +336,81 @@ dialog {
     right: 20px;
     border: 1px solid gray;
     width: 20px;
+}
+
+/* Edit artist form */
+#close-edit-button {
+    background-color:#424242;
+    color: white;
+    position: absolute;
+    margin-bottom: 40px;
+    right: 20px;
+    border: 1px solid gray;
+    width: 20px;
+    cursor: pointer;
+}
+
+#edit-container {
+    padding-right: 2em;
+    padding: 2em;
+    width: 80%;
+    margin: 0px auto 0px auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    row-gap: 10px;
+    background-color:#424242;
+}
+
+#edit-container input, textarea {
+    width: 90%;
+}
+
+#edit-container :first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    width: 100%;
+}
+
+#edit-container hr {
+    
+    grid-column: 1 / -1;
+    width: 90%;
+    margin: 20px auto 20px auto;
+}
+
+
+#edit-container label {
+    padding-left: 40px;
+}
+
+#edit-container :last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    height: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#424242;
+    color: white;
+    border: 1px solid gray;
+    width: 50%;
+    margin: 0 auto 20px auto;
+}
+
+#edit-container button:hover {
+    background-color:#6d6d6d;
+    cursor: pointer;
+}
+
+#edit-container ::placeholder {
+    text-align: center;
+}
+
+
+#edit-artist-birth {
+    text-align: center;
+}
+
+#edit-container h3 {
+    color:rgb(0, 255, 0);
+    font-size: 30px;
+    text-shadow: 5px 5px 5px black;
 }
