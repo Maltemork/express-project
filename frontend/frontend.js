@@ -2,6 +2,7 @@
 
 import {
     getArtists,
+    updateArtist,
     submitNewArtist,
     deleteArtist,
 } from "./rest.js";
@@ -86,6 +87,13 @@ function displayArtists(list) {
         document
             .querySelector("#main-content-grid article:last-child .btn-delete")
             .addEventListener("click", () => deleteArtistClicked(artist));
+            document
+            .querySelector("#main-content-grid article:last-child .btn-favorite")
+            .addEventListener("click", (event) => {
+                event.preventDefault();
+                addToFavoritesClicked(artist);
+                document.querySelector(this).classList.add("favorites");
+            });
         
     }
 }
@@ -173,9 +181,35 @@ function displayFavorites(list) {
             .querySelector("#favorites-content-grid article:last-child .btn-delete")
             .addEventListener("click", () => deleteArtistClicked(artist));
         
+        document
+        .querySelector("#favorites-content-grid article:last-child .btn-favorite")
+        .addEventListener("click", (event) => {
+            event.preventDefault();
+            addToFavoritesClicked(artist);
+            document.querySelector(this).classList.remove("favorites");
+        });
+        
     }
 }
 
+// Add to favorites clicked
+
+function addToFavoritesClicked(artist) {
+    // Console log what artist we are  checking.
+    console.log(`Liked ${artist.name} and added to favorites.`);
+    // Change favorite state for object.
+    if (artist.favorite == true) {
+        artist.favorite = false;
+    } else {
+        artist.favorite = true;
+    }
+    // Update artist in server.
+    updateArtist(artist);
+  
+    
+  
+    
+  }
 
 
 function changeView(section) {

@@ -78,11 +78,55 @@ async function deleteArtist(id) {
         displayArtists(artistsArray);
     }
   }
+
+  //update a specific artist.
+  async function updateArtist(artist) {
+    console.log(artist);
+  
+    // Define values.
+    const name = artist.name; 
+    const birthdate = artist.birthdate;
+    const activeSince = artist.activeSince;
+    const label = artist.label;
+    const website = artist.website;
+    const genres = artist.genres;
+    const shortDescription = artist.shortDescription;
+    const image = artist.image;
+    const favorite = artist.favorite;
+  
+    // Define structure of object and hold it.
+    const artistToUpdate = {
+      name,
+      birthdate,
+      activeSince,
+      label,
+      website,
+      genres,
+      shortDescription,
+      image,
+      favorite,
+    };
+    // Make object into JSON.
+    const artistAsJson = JSON.stringify(artistToUpdate);
+    // Send to server
+    const response = await fetch(`${endpoint}/artists/${artist.id}`, {
+      method: "PUT",
+      body: artistAsJson,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      console.log(`${artist.name} has been updated on server.`);
+    }
+  }
   
 
 
 export {
     getArtists,
+    updateArtist,
     submitNewArtist,
     deleteArtist
 };

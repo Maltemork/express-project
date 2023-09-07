@@ -88,6 +88,34 @@ app.delete("/artists/:id", async (request, response) => {
     response.json(artists);
   });
 
+// PUT request received by server.
+app.put("/artists/:id", async (request, response) => {
+  // Define ID of object.
+  const id = request.params.id;
+  // Define where we store JSON file and read the file.
+  const data = await fs.readFile("artists.json");
+  // Define all artists array.
+  const artists = JSON.parse(data);
+  // Find artist which needs to be sorted based on unique ID.
+  let artistToUpdate = artists.find(artist => artist.id == id);
+  // Define the body of the request which will replace the values JSON file.
+  const body = request.body;
+  // Change the values.
+  artistToUpdate.name = body.name;
+  artistToUpdate.birthdate = body.birthdate;
+  artistToUpdate.activeSince = body.activeSince;
+  artistToUpdate.genres = body.genres;
+  artistToUpdate.label = body.label;
+  artistToUpdate.website = body.website;
+  artistToUpdate.image = body.image;
+  artistToUpdate.shortDescription = body.shortDescription;
+  artistToUpdate.favorite = body.favorite;
+  // Console log new object as well as the entire array.
+  console.log(body);
+  // Overwrite original array.
+  fs.writeFile("artists.json", JSON.stringify(artists));
+});
+
 
 // Server port 8801 listen.
 app.listen(8801, () => {
