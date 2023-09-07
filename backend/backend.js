@@ -35,12 +35,15 @@ app.get("/artists", async (request, response) => {
 // Get request for a specific artist ID.
 
 app.get("/artists/:id", async (request, response) => {
+  // Define ID.
     const id = Number(request.params.id);
-    console.log(id);
-    console.log("hi there");
+    // read file.
     const data = await fs.readFile("artists.json");
+    // parse JSON.
     const artists = JSON.parse(data);
+    // Find artist with ID.
     const result = artists.find(artist => artist.id == id);
+    // Respond with specified artist.
     response.json(result);
     });
 
@@ -92,7 +95,6 @@ app.delete("/artists/:id", async (request, response) => {
 app.put("/artists/:id", async (request, response) => {
   // Define ID of object.
   const id = request.params.id;
-  console.log(request.params);
   // Define where we store JSON file and read the file.
   const data = await fs.readFile("artists.json");
   // Define all artists array.
@@ -101,7 +103,6 @@ app.put("/artists/:id", async (request, response) => {
   let artistToUpdate = artists.find(artist => artist.id == id);
   // Define the body of the request which will replace the values JSON file.
   const body = request.body;
-  console.log(body);
   // Change the values.
   artistToUpdate.name = body.name;
   artistToUpdate.birthdate = body.birthdate;
@@ -112,8 +113,6 @@ app.put("/artists/:id", async (request, response) => {
   artistToUpdate.image = body.image;
   artistToUpdate.shortDescription = body.shortDescription;
   artistToUpdate.favorite = body.favorite;
-  // Console log new object as well as the entire array.
-  console.log(body);
   // Overwrite original array.
   fs.writeFile("artists.json", JSON.stringify(artists));
   response.json();

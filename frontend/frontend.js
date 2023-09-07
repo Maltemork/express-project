@@ -90,8 +90,11 @@ function filterInArray(array) {
 
 // search array
 function searchInArray(array) {
+    // Define input
     let searchInput = document.querySelector("#searchField").value.toLowerCase();
+    // Define filtered array based on input.
     let filteredArray= array.filter((obj) => obj.name.toLowerCase().includes(searchInput));
+    // Check if there is any input in the searchfield, if no just pass array through, if yes apply filter.
     if (searchInput === 0) {
         sortArray(array);
     } else {
@@ -101,7 +104,6 @@ function searchInArray(array) {
 
 // Sort array
 function sortArray(array) {
-    console.log("hej")
     console.log(array);
     const sortType = document.querySelector("#sortBy").value;
     
@@ -264,12 +266,9 @@ function fillFavoritesArray(list) {
     favoritesArray.length = 0;
     for (const artist of list) {
         if (artist.favorite == true) {
-            console.log(artist.favorite)
             favoritesArray.push(artist)
         }
     }
-
-    console.log(favoritesArray);
 
     displayFavorites(favoritesArray);
 }

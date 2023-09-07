@@ -71,8 +71,6 @@ async function submitNewArtist(event) {
 
 // Delete a specific artist.
 async function deleteArtist(id) {
-    // Console log ID of artist.
-    console.log(id);
     // Make a DELETE request to the endpoint.
     const response = await fetch(`${endpoint}/artists/${id}`, {
       method: "DELETE",
@@ -87,8 +85,6 @@ async function deleteArtist(id) {
 
   //update a specific artist.
   async function updateArtist(artist) {
-    console.log(artist);
-  
     // Define values.
     const id = artist.id;
     const name = artist.name; 
@@ -132,10 +128,11 @@ async function deleteArtist(id) {
   
   // Edit artist
   async function editArtist(artist) {
-    console.log(artist)
 
+    // Make into JSON.
     const ArtistJSON = JSON.stringify(artist);
 
+    // Send PUT request to server.
     const response = await fetch(`${endpoint}/artists/${artist.id}`, {
         method: "PUT",
         body: ArtistJSON,
@@ -159,7 +156,6 @@ export {
     updateArtist,
     submitNewArtist,
     deleteArtist,
-    updateArtist,
     editArtist
 };
 
