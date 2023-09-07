@@ -92,6 +92,7 @@ app.delete("/artists/:id", async (request, response) => {
 app.put("/artists/:id", async (request, response) => {
   // Define ID of object.
   const id = request.params.id;
+  console.log(request.params);
   // Define where we store JSON file and read the file.
   const data = await fs.readFile("artists.json");
   // Define all artists array.
@@ -100,6 +101,7 @@ app.put("/artists/:id", async (request, response) => {
   let artistToUpdate = artists.find(artist => artist.id == id);
   // Define the body of the request which will replace the values JSON file.
   const body = request.body;
+  console.log(body);
   // Change the values.
   artistToUpdate.name = body.name;
   artistToUpdate.birthdate = body.birthdate;
@@ -114,6 +116,7 @@ app.put("/artists/:id", async (request, response) => {
   console.log(body);
   // Overwrite original array.
   fs.writeFile("artists.json", JSON.stringify(artists));
+  response.json();
 });
 
 

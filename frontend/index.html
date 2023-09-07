@@ -37,8 +37,8 @@
                         <option value="age">Age</option>
                         <option value="activeSince">Active since</option>
                     </select>
-                    <label for="display">Show:</label>
-                    <select name="display" id="displayOnly">
+                    <label for="filter">Filter:</label>
+                    <select name="name" id="filterArtists">
                         <option value="all">All</option>
                         <option value="pop">Pop</option>
                         <option value="alternative">Alternative</option>
@@ -157,7 +157,7 @@
 
             <hr>
 
-            <button type="submit">Update artist</button>
+            <button type="submit" script="event.preventDefault();">Update artist</button>
         </form>
     </dialog>
   

@@ -96,7 +96,7 @@ button {
     border: 1px solid gray;
     width: 30%;
     position: absolute;
-    right: 10%;
+    right: 13%;
 }
 
 #searchField ::placeholder {

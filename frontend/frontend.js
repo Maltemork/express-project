@@ -4,10 +4,10 @@ import {
     getArtists,
     updateArtist,
     submitNewArtist,
-    deleteArtist
+    deleteArtist,
+    editArtist
 } from "./rest.js";
 
-let sortType = "default";
 let artistsArray = [];
 let favoritesArray = [];
 
@@ -20,30 +20,35 @@ async function startFunction() {
 
     
 
-    let artistsArray = await getArtists();
+    artistsArray = await getArtists();
 
-    sortArray(artistsArray);
+    filterInArray(artistsArray);
 
     fillFavoritesArray(artistsArray);
 
     startEventListeners();
 
-    document.querySelector("#sortBy").addEventListener("change", () => {sortArray(artistsArray);});
+    document.querySelector("#filterArtists").addEventListener("change", () => {filterInArray(artistsArray)})
 
-    document.querySelector("#searchField").addEventListener("input", () => {searchInArray(artistsArray)});
+    document.querySelector("#sortBy").addEventListener("change", () => {filterInArray(artistsArray);});
+
+    document.querySelector("#searchField").addEventListener("input", () => {filterInArray(artistsArray)});
 }
 
 function startEventListeners() {
     // Navigation buttons in the header.
     document.querySelector("#nav-frontpage").addEventListener("click", async function() { 
         artistsArray = await getArtists();
-        sortArray(artistsArray); 
+        filterInArray(artistsArray); 
         changeView("frontpage");});
+
     document.querySelector("#nav-create").addEventListener("click", () => { changeView("create"); });
-    document.querySelector("#nav-favorites").addEventListener("click", async() => { artistsArray = await getArtists(); fillFavoritesArray(artistsArray); sortArray(artistsArray); changeView("favorites"); });
+    document.querySelector("#nav-favorites").addEventListener("click", async() => { artistsArray = await getArtists(); fillFavoritesArray(artistsArray); changeView("favorites"); });
 
     // Submit event for create new artist form.
-    document.querySelector("#form-container").addEventListener("submit", submitNewArtist)
+    document.querySelector("#form-container").addEventListener("submit", (event) => {
+        submitNewArtist(event);
+    })
 
     // Eventlistener for NO button in delete dialog.
     document.querySelector("#btn-no").addEventListener("click", () => {
@@ -63,8 +68,38 @@ function startEventListeners() {
     
 }
 
-// Sort array
+// Whether you search, filter or sort, the process is the same.
+// First it will check if there are filters applied. If yes, it will filter the array and supply it into the search function.
+// The search function takes the previous filtered array and checks if there is an input in the search field.
+// If there is an input in the search field, it will filter the filtered array with the search input.
+// After this is done, the now double-filtered array will be passed through the sort function to check for sorts.
+// After sorting the double-filtered array, it will be displayed on the website.
+// This way all 3 functions will be able to work at the same time - you can now filter, search and sort all at once!
 
+//filter in array.
+function filterInArray(array) {
+    let filter = document.querySelector("#filterArtists").value;
+
+    if (filter == "all") {
+        searchInArray(array);
+    } else {
+        let filteredArray= array.filter((obj) => obj.genres.toLowerCase().includes(filter));
+        searchInArray(filteredArray);
+    }
+}
+
+// search array
+function searchInArray(array) {
+    let searchInput = document.querySelector("#searchField").value.toLowerCase();
+    let filteredArray= array.filter((obj) => obj.name.toLowerCase().includes(searchInput));
+    if (searchInput === 0) {
+        sortArray(array);
+    } else {
+        sortArray(filteredArray);
+    }
+}
+
+// Sort array
 function sortArray(array) {
     console.log("hej")
     console.log(array);
@@ -87,15 +122,6 @@ function sortArray(array) {
     }
 }
 
-function searchInArray(array) {
-    let searchInput = document.querySelector("#searchField").value.toLowerCase();
-    let filteredArray= array.filter((obj) => obj.name.toLowerCase().includes(searchInput));
-    if (array.length === 0) {
-        sortArray(array);
-    } else {
-        displayArtists(filteredArray);
-    }
-}
 
 
 // Display artists.
@@ -178,20 +204,36 @@ function editArtistClicked(artist) {
     form.image.value = artist.image;
     form.website.value = artist.website;
 
-    let updatedArtist = {
-        "id": artist.id,
-        "name": artist.name,
-        shortDescription,
-        birthdate,
-        activeSince,
-
-    }
+    
 
     // Submit edited artist.
-    document.querySelector("#edit-container").addEventListener("submit", (event) => {
+    document.querySelector("#edit-container").addEventListener("submit", async(event) => {
         event.preventDefault();
-        submitNewArtist(event, );});
+
+        let updatedArtist = {
+            "id": artist.id,
+            "name": form.name.value,
+            "shortDescription": form.description.value,
+            "birthdate": form.birthdate.value,
+            "activeSince": form.activeSince.value,
+            "genres": form.genres.value,
+            "label": form.label.value,
+            "image": form.image.value,
+            "website": form.website.value,
+        }
+
+        document.querySelector("#edit-artist-dialog").close();
+
+        await editArtist(updatedArtist);
+        artistsArray = await getArtists();
+        sortArray(artistsArray);
+    });
+
+        
+
  }
+
+ 
 
 // Delete button clicked on a specific artist.
 function deleteArtistClicked(artist) {
@@ -330,5 +372,8 @@ function changeView(section) {
 }
 
 export {
-    displayArtists
+    displayArtists,
+    sortArray,
+    artistsArray,
+    changeView
 }

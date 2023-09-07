@@ -1,7 +1,8 @@
 "use strict";
 
 import {
-  displayArtists
+  displayArtists,
+  changeView
 } from "./frontend.js"
 
 const endpoint = "http://localhost:8801";
@@ -18,9 +19,10 @@ async function getArtists() {
 
 // Submit new artist function.
 async function submitNewArtist(event) {
+    event.preventDefault();
     console.log("Submit artist.");
     // prevent default behaviour.
-    event.preventDefault();
+    
 
     // Define all the values.
     const form = event.target;
@@ -84,8 +86,7 @@ async function deleteArtist(id) {
   }
 
   //update a specific artist.
-  async function updateArtist(event, artist) {
-    event.preventDefault();
+  async function updateArtist(artist) {
     console.log(artist);
   
     // Define values.
@@ -126,12 +127,27 @@ async function deleteArtist(id) {
 
     if (response.ok) {
       console.log(`${artist.name} has been updated on server.`);
-      return;
     }
   }
   
   // Edit artist
+  async function editArtist(artist) {
+    console.log(artist)
 
+    const ArtistJSON = JSON.stringify(artist);
+
+    const response = await fetch(`${endpoint}/artists/${artist.id}`, {
+        method: "PUT",
+        body: ArtistJSON,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      if (response.ok) {
+        console.log("Artist has been updated.")
+      }
+ }
  
 
 
@@ -143,6 +159,7 @@ export {
     updateArtist,
     submitNewArtist,
     deleteArtist,
-    updateArtist
+    updateArtist,
+    editArtist
 };
 
