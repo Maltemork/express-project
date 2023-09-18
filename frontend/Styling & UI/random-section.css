@@ -1,18 +1,17 @@
 #random-section-container {
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    transition-duration: 0.2s;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    text-align: left;
     width: 90%;
     min-height: fit-content;
     margin: 20px auto;
     border-radius: 10px;
     padding: 20px;
     background-color:  #7ac599;
-    background-size: cover;
-    -moz-background-size: cover;
-    background-repeat: no-repeat;
-    background-position: absolute;
+    box-shadow: 0px 0px 80px rgba(0, 255, 234, 0.418);
 }
 
 
@@ -25,6 +24,7 @@
     background: #557272;
     height: 3em;
     width: 15em;
+    align-self: left;
 }
 
 
@@ -34,6 +34,7 @@
     width: 500px;  
     object-fit: cover;
     object-position: top;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.322);
 }
 
 #random-section-container div {
@@ -41,8 +42,11 @@
 }
 
 #random-section-container h3 {
-    font-size: 35px;
-    color: yellow;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 80px;
+    margin: 0 auto;
+    letter-spacing: -3px ;
+    color:rgb(0, 255, 255);
     text-shadow: 0 0 20px black;;
 }
 

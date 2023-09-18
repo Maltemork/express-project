@@ -4,6 +4,7 @@ import {
   displayArtists,
   changeView
 } from "./frontend.js"
+import { filterInArray } from "./sort-filter-search.js";
 
 const endpoint = "http://localhost:8801";
 
@@ -72,7 +73,6 @@ async function submitNewArtist(event) {
 async function getRandomArtist() {
   const response = await fetch(`${endpoint}/artists/random`);
   const data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -153,71 +153,13 @@ async function deleteArtist(id) {
  }
  
 
- // Sort array
- function sortArray(array) {
-
-  const sortType = document.querySelector("#sortBy").value;
-
-  if (sortType == "default") {
-      displayArtists(array.sort((a, b) => b.id - a.id));
-      console.log("Array has been sorted by ID.");
-  }
-  if (sortType == "name-reverse") {
-      displayArtists(array.sort((a, b) => b.name.localeCompare(a.name)));
-      console.log("Array has been sorted by name (reversed).");
-  }
-  if (sortType == "name") {
-      displayArtists(array.sort((a, b) => a.name.localeCompare(b.name)));
-      console.log("Array has been sorted by name.");
-  }
-  if (sortType == "age") {
-      displayArtists(array.sort((a, b) => a.birthdate.localeCompare(b.birthdate)));
-      console.log("Array has been sorted by age.");
-  }
-  if (sortType == "activeSince") {
-      displayArtists(array.sort((a, b) => a.activeSince - b.activeSince));
-      console.log("Array has been sorted by 'active since'.");
-  }
-
-}
-
-// Logic is Filter -> Search ->  Sort
-//filter in array.
-function filterInArray(array) {
-  let filter = document.querySelector("#filterArtists").value;
-
-  if (filter == "all") {
-      searchInArray(array);
-  } else {
-      let filteredArray = array.filter((obj) => obj.genres.toLowerCase().includes(filter));
-      searchInArray(filteredArray);
-  }
-}
-
-// search array
-function searchInArray(array) {
-  let searchInput = document.querySelector("#searchField").value.toLowerCase();
-  let filteredArray = array.filter((obj) => obj.name.toLowerCase().includes(searchInput));
-  if (searchInput === 0) {
-      sortArray(array);
-  } else {
-      sortArray(filteredArray);
-  }
-}
-
-
-
-
-
 export {
     getArtists,
     updateArtist,
     submitNewArtist,
     deleteArtist,
     editArtist,
-    sortArray,
     filterInArray,
-    searchInArray,
     getRandomArtist
 
 };

@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="random-section.css">
-    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="stylesheet" href="./Styling & UI/style.css">
+    <link rel="stylesheet" href="./Styling & UI/header.css">
+    <link rel="stylesheet" href="./Styling & UI/frontpage-section.css">
+    <link rel="stylesheet" href="./Styling & UI/random-section.css">
+    <link rel="stylesheet" href="./Styling & UI/favorites-section.css">
+    <link rel="stylesheet" href="./Styling & UI/edit-artist.css">
+    <link rel="stylesheet" href="./Styling & UI/delete-artist.css">
+    <link rel="stylesheet" href="./Styling & UI/new-artist.css">
+    <link rel="icon" type="image/png" href="./Styling & UI/favicon.png">
     <title>MusicoolioDB - Online database for music artists.</title>
 </head>
 <body>
@@ -13,7 +19,7 @@
         
             <div id="header" class="third-color">
                <div id="logo-header" class="header-item">
-                    <img src="./logo.png" alt="logo" id="page-logo"/>
+                    <img src="./Styling & UI/logo.png" alt="logo" id="page-logo"/>
                </div> 
                 
                 <div id="nav-frontpage" class="header-item clickable active">          
@@ -42,7 +48,7 @@
                     
                     
 
-                    
+                    <input type="search" id="searchField" placeholder="Search artist">
                     <label for="filterArtists">Filter artists: </label>
                     <select name="name" id="filterArtists">
                         <option value="all">All</option>
@@ -58,6 +64,7 @@
                         <option value="indie">Indie</option>
                         <option value="electronic">Electronic</option>
                         <option value="folk">Folk</option>
+                        <option value="psychedelic">Psychedelic</option>
                     </select>
                     
                     <label for="sort">Sort by: </label>
@@ -70,7 +77,7 @@
                         </select>
                         
                         <button name="change-btn" id="change-grid-btn">LIST VIEW</button>
-                        <input type="search" id="searchField" placeholder="search">
+                        
                 
                 </div>
                 <div id="main-content-grid" class="cardsView">
@@ -129,57 +136,63 @@
             </div>
         </div>
     </div>
-    <!-- DELETE DIALOG -->
-    <dialog id="dialog-delete-artist">
-        <input type="button" value="X" id="close-delete-button">
-        <h2>Are you sure you would like to delete this artist?</h2>
-        <p id="dialog-delete-artist-name"></p>
-        
-        <form action="" id="form-delete-artist">
-          <div id="delete-grid">
-            <input id="btn-yes" type="submit" value="Yes" />
-            <input id="btn-no" type="button" value="No" />
-          </div>
-        </form>
-    </dialog>
-    <!-- UPDATE DIALOG-->
-    <dialog id="edit-artist-dialog">
-        <input type="button" value="X" id="close-edit-button">
-        <form action="submit" method="put" id="edit-container">
+    
+        <!-- DELETE DIALOG -->
+        <dialog id="dialog-delete-artist">
+            <input type="button" value="X" id="close-delete-button">
+            <h2>Are you sure you would like to delete this artist?</h2>
+            <p id="dialog-delete-artist-name"></p>
             
-            <h3 id="edit-title">Edit artist</h3>
+            <form action="" id="form-delete-artist">
+            <div id="delete-grid">
+                <input id="btn-yes" type="submit" value="Yes" />
+                <input id="btn-no" type="button" value="No" />
+            </div>
+            </form>
+        </dialog>
+        <!-- UPDATE DIALOG-->
+        <dialog id="edit-artist-dialog">
+            <input type="button" value="X" id="close-edit-button">
+            <div id="edit-image">
+                image goes here
+            </div>
+            <form action="submit" method="put" id="edit-container">
+                
+                    <h3 id="edit-title">Edit artist</h3>
+                    
+                    <hr>
 
-            <hr>
+                    <label for="name">Artist name:</label>
+                    <input type="text" name="name" id="edit-artist-name" placeholder="Name" required>
 
-            <label for="name">Artist name:</label>
-            <input type="text" name="name" id="edit-artist-name" placeholder="Name" required>
+                    <label for="description">Short description:</label>
+                    <textarea name="description" id="edit-artist-description" placeholder="Description" maxlength: 200 required style="resize: none"></textarea>
 
-            <label for="description">Short description:</label>
-            <textarea name="description" id="edit-artist-description" placeholder="Description" maxlength: 200 required style="resize: none"></textarea>
+                    <label for="birth">Born:</label>
+                    <input type="date" name="birthdate" id="edit-artist-birth" placeholder="Birthdate" required>
 
-            <label for="birth">Born:</label>
-            <input type="date" name="birthdate" id="edit-artist-birth" placeholder="Birthdate" required>
+                    <label for="activeSince">Active since:</label>
+                    <input type="number" name="activeSince" id="edit-artist-career" placeholder="Career start (year)" required>
 
-            <label for="activeSince">Active since:</label>
-            <input type="number" name="activeSince" id="edit-artist-career" placeholder="Career start (year)" required>
+                    <label for="genres">Genre(s):</label>
+                    <input type="text" name="genres" id="edit-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
 
-            <label for="genres">Genre(s):</label>
-            <input type="text" name="genres" id="edit-artist-genres" placeholder="Pop, hiphop, alternative, etc." required>
+                    <label for="label">Labels:</label>
+                    <input type="text" name="label" id="edit-artist-label" placeholder="Labels" required>
 
-            <label for="label">Labels:</label>
-            <input type="text" name="label" id="edit-artist-label" placeholder="Labels" required>
+                    <label for="image">Image:</label>
+                    <input type="url" name="image" id="edit-artist-image" placeholder="Insert image URL." required>
 
-            <label for="image">Image:</label>
-            <input type="url" name="image" id="edit-artist-image" placeholder="Insert image URL." required>
+                    <label for="website">Website:</label>
+                    <input type="url" name="website" id="edit-artist-website" placeholder="Insert website URL." required>
 
-            <label for="website">Website:</label>
-            <input type="url" name="website" id="edit-artist-website" placeholder="Insert website URL." required>
+                    <hr>
 
-            <hr>
-
-            <button type="submit" script="event.preventDefault();">Update artist</button>
-        </form>
-    </dialog>
+                    <button type="submit" script="event.preventDefault();" id="edit-submit-button">Update artist</button>
+                
+            </form>
+        </dialog>
+ 
   
     <script src="frontend.js" type="module"></script>
 </body>

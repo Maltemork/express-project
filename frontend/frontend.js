@@ -6,12 +6,14 @@ import {
     submitNewArtist,
     deleteArtist,
     editArtist,
-    filterInArray,
     getRandomArtist
 } from "./rest.js";
+import { filterInArray } from "./sort-filter-search.js";
 
+let previousArtistObject;
 let artistsArray = [];
 let favoritesArray = [];
+let listView = false;
 
 
 window.addEventListener("load", startFunction);
@@ -74,22 +76,41 @@ function startEventListeners() {
 
     
     // load new random artist
-
     document.querySelector("#new-random-artist-btn").addEventListener("click", randomArtistViewClicked);
+
+    // LIST VIEW / GRID VIEW button
+    document.querySelector("#change-grid-btn").addEventListener("click", changeGridViewClicked);
     
+}
+
+function changeGridViewClicked() {
+    if (listView == false) {
+            listView = true;
+            document.querySelector("#main-content-grid").classList.replace("cardsView", "listView");
+        } else {
+            listView = false;
+            document.querySelector("#main-content-grid").classList.replace("listView", "cardsView");
+        };
+    
+
+
+console.log(listView);
+    displayArtists(artistsArray);
 }
 
 // Display artists.
 function displayArtists(list) {
     // Clear grid
     document.querySelector("#main-content-grid").innerHTML = "";
+    let HTMLelement = ``;
     
     // insert HTML for each item in globalArtistsArray.
     for (const artist of list) { 
         // define the element we will place on the website.
-        let HTMLelement = /* HTML */ `
+        if (listView == false) {
+        HTMLelement = /* HTML */ `
             <article class="grid-item-artist" id="artist-${artist.id}">
-                <img src="${artist.image}">
+                <img src="${artist.image}"/>
                 <p>
                     <a href="${artist.website}">${artist.website}</a>
                 </p>
@@ -113,6 +134,28 @@ function displayArtists(list) {
                     </div> 
             </article>
         `;
+        } else {
+            HTMLelement = /* HTML */ `
+            <article class="list-item-artist" id="artist-${artist.id}">
+                <img src="${artist.image}"/>
+                <p>${artist.name}</p>
+                    
+                    <p>${artist.shortDescription}</p>
+                    <p>Born: ${artist.birthdate}</p>
+                    <p>Active since: ${artist.activeSince}</p>
+                    <p>${artist.genres} </p>
+                    <p>Label(s): ${artist.label}</p>
+                    
+                    <a href="${artist.website}">${artist.website}</a>
+        
+                    <div class="btns">
+                        <button class="btn-update">🖊</button>
+                        <button class="btn-delete">🗑</button>
+                        <button class="btn-favorite" id="fav-btn-${artist.id}">♥</button>
+                    </div> 
+            </article>
+        `;
+        };
         document.querySelector("#main-content-grid").insertAdjacentHTML(
             "beforeend", HTMLelement);
 
@@ -147,6 +190,10 @@ function editArtistClicked(artist) {
 
     // Change title
     document.querySelector("#edit-title").textContent = `Editing post for ${artist.name}`;
+
+    // Change image
+    document.querySelector("#edit-image").innerHTML = /*HTML*/
+    `<img src="${artist.image}"/>`;
 
     // Fill out form
     let form = document.querySelector("#edit-container");
@@ -195,7 +242,15 @@ function editArtistClicked(artist) {
  async function randomArtistViewClicked() {
     let artistObject = {};
     artistObject = await getRandomArtist();
-    
+
+    //Makes sure you don't get the same artist twice.
+    while (artistObject.id == previousArtistObject) {
+        artistObject = await getRandomArtist();
+        console.log("Skipped duplicate artist.")
+    }
+
+    previousArtistObject = artistObject.id;
+
     let HTMLelement = /*HTML*/ `
     <img src="${artistObject.image}"/>
     <div>
@@ -207,14 +262,14 @@ function editArtistClicked(artist) {
             <li>${artistObject.name} is primarily associated with ${artistObject.genres.toLowerCase()}.</li>
             <li>They have been signed to the record label(s) ${artistObject.label}.</li>
             <br/>
-            
         </ul>
         <a href="${artistObject.website}">${artistObject.website}</a>
-        <br/>
         <div class="3btn-holder">
-            <button class="btn-favorite">♥</button>
-        </div>
+        <button class="btn-favorite">♥</button>
     </div>
+        <br/>
+    </div>
+    
     `;
     document.querySelector("#random-section-container").innerHTML = HTMLelement;
     toggleGreenGlow();
