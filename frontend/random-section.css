@@ -1,0 +1,67 @@
+#random-section-container {
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 90%;
+    min-height: fit-content;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+    background-color:  #7ac599;
+    background-size: cover;
+    -moz-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: absolute;
+}
+
+
+#new-random-artist-btn {
+    margin: 20px 0 0 80px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 0px;
+    background: #557272;
+    height: 3em;
+    width: 15em;
+}
+
+
+
+#random-section-container img {
+    height: 500px;
+    width: 500px;  
+    object-fit: cover;
+    object-position: top;
+}
+
+#random-section-container div {
+    margin-left: 20px;
+}
+
+#random-section-container h3 {
+    font-size: 35px;
+    color: yellow;
+    text-shadow: 0 0 20px black;;
+}
+
+#random-section-container button {
+    margin: 80px auto 0 auto;
+    border: 1px solid gray;
+    background-color: #424242;
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    border-radius: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid gray;
+    border-radius: 7px;
+    
+    width: 2em;
+    background: #557272;
+    font-size: 40px;
+    position: relative; 
+}
+
+

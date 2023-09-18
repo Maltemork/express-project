@@ -34,7 +34,6 @@ async function submitNewArtist(event) {
     const genres = form.genres.value;
     const shortDescription = form.description.value;
     const image = form.image.value;
-    const favorite = false;
   
     // create new artist object.
     const newArtist = {
@@ -46,7 +45,6 @@ async function submitNewArtist(event) {
       genres,
       shortDescription,
       image,
-      favorite,
     };
     
     // Make the object into a json format.
@@ -69,6 +67,15 @@ async function submitNewArtist(event) {
     }
   }
 
+// Get random artist
+
+async function getRandomArtist() {
+  const response = await fetch(`${endpoint}/artists/random`);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
 // Delete a specific artist.
 async function deleteArtist(id) {
     // Console log ID of artist.
@@ -81,13 +88,12 @@ async function deleteArtist(id) {
     // If the response is okay, update the artists array and display it on the frontpage.
     if (response.ok) {
         let artistsArray = await getArtists();
-        displayArtists(artistsArray);
+        filterInArray(artistsArray);
     }
   }
 
   //update a specific artist.
   async function updateArtist(artist) {
-    console.log(artist);
   
     // Define values.
     const id = artist.id;
@@ -132,8 +138,6 @@ async function deleteArtist(id) {
   
   // Edit artist
   async function editArtist(artist) {
-    console.log(artist)
-
     const ArtistJSON = JSON.stringify(artist);
 
     const response = await fetch(`${endpoint}/artists/${artist.id}`, {
@@ -150,6 +154,58 @@ async function deleteArtist(id) {
  }
  
 
+ // Sort array
+ function sortArray(array) {
+
+  const sortType = document.querySelector("#sortBy").value;
+
+  if (sortType == "default") {
+      displayArtists(array.sort((a, b) => b.id - a.id));
+      console.log("Array has been sorted by ID.");
+  }
+  if (sortType == "name-reverse") {
+      displayArtists(array.sort((a, b) => b.name.localeCompare(a.name)));
+      console.log("Array has been sorted by name (reversed).");
+  }
+  if (sortType == "name") {
+      displayArtists(array.sort((a, b) => a.name.localeCompare(b.name)));
+      console.log("Array has been sorted by name.");
+  }
+  if (sortType == "age") {
+      displayArtists(array.sort((a, b) => a.birthdate.localeCompare(b.birthdate)));
+      console.log("Array has been sorted by age.");
+  }
+  if (sortType == "activeSince") {
+      displayArtists(array.sort((a, b) => a.activeSince - b.activeSince));
+      console.log("Array has been sorted by 'active since'.");
+  }
+
+}
+
+// Logic is Filter -> Search ->  Sort
+//filter in array.
+function filterInArray(array) {
+  let filter = document.querySelector("#filterArtists").value;
+
+  if (filter == "all") {
+      searchInArray(array);
+  } else {
+      let filteredArray = array.filter((obj) => obj.genres.toLowerCase().includes(filter));
+      searchInArray(filteredArray);
+  }
+}
+
+// search array
+function searchInArray(array) {
+  let searchInput = document.querySelector("#searchField").value.toLowerCase();
+  let filteredArray = array.filter((obj) => obj.name.toLowerCase().includes(searchInput));
+  if (searchInput === 0) {
+      sortArray(array);
+  } else {
+      sortArray(filteredArray);
+  }
+}
+
 
 
 
@@ -160,6 +216,13 @@ export {
     submitNewArtist,
     deleteArtist,
     updateArtist,
-    editArtist
+    editArtist,
+    sortArray,
+    filterInArray,
+    searchInArray,
+    getRandomArtist
 };
+
+    
+
 
