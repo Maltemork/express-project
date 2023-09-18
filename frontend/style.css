@@ -1,35 +1,76 @@
+/* Main body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0 auto 0;
     padding: 0;
     margin: 0;
-    background-color: rgb(26, 26, 26);
+    justify-content: center;
+    color: white;
+    background: linear-gradient(to top, #4b3c21 0%, #46633c 100%);
+    min-height: 1000px;
+    background-size: cover;
+    -moz-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: absolute;
+    align-items: center;
+    align-content: center;
+
 }
 
-button {
+button:hover {
     color: white;
+    cursor: pointer;
+    background-color: #424242;
 }
+
+/* Color scheme */
+
 
 #content-header {
-    margin: 20px auto 20px 50px;
+    color: white;
+    display: flex;
+    flex: row wrap;
+    font-size:larger;
+    padding: 20px 20px 20px 200px;
+}
+
+#content-header label {
+    margin: auto 0;
 }
 
 #content-header select {
+    margin-right: 50px;
+    margin-left: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     border: 1px solid gray;
-    border-radius: 7px;
+    border-radius: 0px;
     background: #557272;
-    padding: 10px;
-    margin: 0 10px;
+    height: 3em;
+    text-align: center;
+    justify-content: center;
+    justify-self: center;
+    }
+
+#content-header button {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 0px;
+    background: #557272;
+    height: 3em;
+    width: 10em;
 }
 
 
+#content-header button:hover, select:hover {
+    cursor: pointer;
+    background-color: #424242;
+}
 
 #main-container {
-    background-color: rgb(44, 44, 44);
-    color: white;
-    width: 80%;
+    color: rgb(43, 43, 43);
+    width: 90%;
     min-height: 850px;
     margin: 0 auto 0;
     margin-top: 0;
@@ -37,8 +78,14 @@ button {
 }
 
 /* HEADER SECTION */
+#page-logo {
+    max-height: 100%;
+    max-width: 12em;
+    margin-top: 20px;
+}
 
 #header {
+    color: #b9eccf;
     /* make text not markable */
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -48,14 +95,22 @@ button {
     width: 100%;
     height: 8em;
     margin: 0px auto 0px;
-    background-color: rgb(80, 80, 80);
     padding: auto;
     display: flex;
 }
 
+#logo-header {
+    filter: brightness(0.9) invert(.7) sepia(.5) hue-rotate(100deg) saturate(200%);
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 .active {
-    background-color: rgb(39, 39, 39);
-    color: rgb(0, 255, 0);
+    background-color:  #4677689d;
+    color: rgb(253, 253, 253);
     /* box-shadow: 0px 0px 10px black; */
 }
 
@@ -63,14 +118,14 @@ button {
     margin: 0 auto 0;
     font-size: 1.4em;
     padding-top: 0em;
-    width: 10em;
+    width: 100%;
     height: 100%;
     text-align: center;
 }
 
-.header-item:hover {
-    background-color: gray;
-    color: rgb(0, 255, 0);
+.clickable:hover {
+    background:  #6aa07b;
+    color: white;
     cursor: pointer;
 }
 
@@ -89,67 +144,95 @@ button {
 }
 
 /* HEADER SECTION END */
+
+
+/* MAIN PAGE */
+
+
+
+
+#frontpage-section {
+    padding-bottom: 20px;
+}
+
 #searchField {
     color: white;
     height: 3em;
     background-color: #557272;
     border: 1px solid gray;
-    width: 30%;
-    position: absolute;
-    right: 13%;
+    min-width: 30%;
+    margin-left: 100px;
+    position: relative;
+    padding-left: 10px;
 }
 
 #searchField ::placeholder {
     color: white;
 }
 
-/* Main content grid */
+#filterArtists {
+    border-radius: 0;
+    height: 3em;
+    
+}
 
-#main-content-grid {
-    width: 100%;
+/* Main content grid */
+.cardsView {
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    width: 95%;
     height: fit-content;
+    gap: 15px;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.listView {
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .grid-item-artist {
     position: relative;
-    flex: 0 0 23%; 
-    gap: 5px;
-    min-height: 700px;
+    margin: 0 0 20px 10px;
+    flex: 0 0 18%;
     height: fit-content;
     padding: 10px;
-    margin: 5px;
-    background-color: #424242;
+    background-color:  #6bb68b;  
     text-align: center;
     transition-duration: 0.5s;
     transition-timing-function: ease;
     transition-property: all;
     border-radius: 10px;
+    align-self: flex-start;
 }
 
 
 
 .artist-title {
+    font-family:'Times New Roman', Times, serif;
     font-size: 40px;
-    color:rgb(255, 255, 255);
-    text-shadow: 3px 3px 3px black;
+    letter-spacing: -3px ;
+    color:rgb(0, 255, 242);
 }
 
 .grid-item-artist img {
-    box-shadow: 0px 0px 20px black;
     height: 250px;
     width: 250px;
     object-fit: cover;
     object-position: top;
     margin-top: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.486);
 }
 
 .grid-item-artist:hover {
+    z-index: 99999;
     scale: 1.02;
     transition-duration: 0.5s;
     transition-timing-function: ease;
     transition-property: all;
+    box-shadow: 0px 0px 80px rgb(0, 255, 234);
 }
 
 .grid-item-artist p {
@@ -161,7 +244,7 @@ button {
 .grid-item-artist a {
     position: relative;
     margin-top: 200px;
-    color: rgb(0, 255, 0);
+    color: white;
     text-decoration: none;
     text-align: center;
 }
@@ -176,9 +259,9 @@ button {
     display: flex;
     justify-content: center;
     gap: 3px;
-    position: absolute;
+    position: relative;
     margin: 20px auto 20px auto;
-    bottom: 0;
+    bottom: 0px;
     width: 95%;
 }
 
@@ -196,7 +279,6 @@ button {
 }
 
 .favorite {
-    background-color:rgb(0, 255, 0);
     color:rgb(0, 255, 0);
 }
 
@@ -208,25 +290,37 @@ button {
 /* Favorites section */
 
 #favorites-content-grid {
-    width: 100%;
+    min-height: 900px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     flex-flow: row wrap;
     height: fit-content;
+    align-content: center;
+    align-items: center;
+    align-self: flex-start;
+
 }
 
-
+.favorite-artist-card {
+    box-shadow: 0px 0px 30px rgba(30, 255, 0, 0.685);
+}
 
 /* Create form: */
+
+#create-section {
+    min-height: 900px;
+    color: white;
+}
 
 #form-container {
     padding-right: 2em;
     padding: 2em;
-    width: 50%;
-    margin: 50px auto 200px auto;
+    width: 60%;
+    margin: 0px auto 200px auto;
     display: grid;
     grid-template-columns: 1fr 3fr;
     row-gap: 10px;
-    background-color:#424242;
 }
 
 #form-container input, textarea {
@@ -240,7 +334,7 @@ button {
 }
 
 #form-container hr {
-    
+    color: white;
     grid-column: 1 / -1;
     width: 90%;
     margin: 20px auto 20px auto;
@@ -248,6 +342,7 @@ button {
 
 
 #form-container label {
+    color: white;
     padding-left: 40px;
 }
 
@@ -278,9 +373,8 @@ button {
 }
 
 #form-container h3 {
-    color:rgb(0, 255, 0);
+    color: white;
     font-size: 30px;
-    text-shadow: 5px 5px 5px black;
 }
 
 
@@ -293,7 +387,7 @@ button {
 /* Delete dialog */
 
 dialog {
-    background-color:#424242;
+    background-color:#394a51;
     color: white;
     border: 1px solid gray;
 }
@@ -340,7 +434,7 @@ dialog {
 
 /* Edit artist form */
 #close-edit-button {
-    background-color:#424242;
+    background-color:#394a51;
     color: white;
     position: absolute;
     margin-bottom: 40px;
@@ -358,11 +452,15 @@ dialog {
     display: grid;
     grid-template-columns: 1fr 3fr;
     row-gap: 10px;
-    background-color:#424242;
+    background-color:#394a51;
 }
 
 #edit-container input, textarea {
     width: 90%;
+}
+
+#edit-container button {
+    background-color: #394a51;
 }
 
 #edit-container :first-child {
@@ -388,7 +486,7 @@ dialog {
     text-align: center;
     height: 50px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color:#424242;
+    background-color:#394a51;
     color: white;
     border: 1px solid gray;
     width: 50%;

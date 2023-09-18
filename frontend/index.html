@@ -4,40 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Musikere | Express / Node.js projekt</title>
+    <link rel="stylesheet" href="random-section.css">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <title>MusicoolioDB - Online database for music artists.</title>
 </head>
 <body>
     <div id="main-container">
         
-            <div id="header">
-                <div id="nav-frontpage" class="header-item active">          
+            <div id="header" class="third-color">
+               <div id="logo-header" class="header-item">
+                    <img src="./logo.png" alt="logo" id="page-logo"/>
+               </div> 
+                
+                <div id="nav-frontpage" class="header-item clickable active">          
                     <h3>👁</h3>
-                    <p>VIEW</p>
+                    <p>ALL</p>
                 </div>
-                <div id="nav-create" class="header-item" >
+                <div id="nav-random" class="header-item clickable">          
+                    <h3>?</h3>
+                    <p>RANDOM</p>
+                </div>
+                <div id="nav-create" class="header-item clickable" >
                     <h3 id="createIcon">➕</h3>
                     <p>CREATE</p>
                 </div>
                 
-                <div id="nav-favorites" class="header-item">
+                <div id="nav-favorites" class="header-item clickable">
                     <h3>♥</h3>
                     <p>FAVORITES</p>
                 </div>
             </div>
         
-        <div id="mainpage-content">
+        <div id="mainpage-content" class="fourth-color">
             
-            <div id="frontpage-section" class="">
+            <div id="frontpage-section" class="fourth-color">
                 <div id="content-header">
-                    <label for="sort">Sort by: </label>
-                    <select name="sort" id="sortBy">
-                        <option value="default" selected>Date added</option>
-                        <option value="name">Name</option>
-                        <option value="name-reverse">Name (reversed)</option>
-                        <option value="age">Age</option>
-                        <option value="activeSince">Active since</option>
-                    </select>
-                    <label for="filter">Filter:</label>
+                    
+                    
+
+                    
+                    <label for="filterArtists">Filter artists: </label>
                     <select name="name" id="filterArtists">
                         <option value="all">All</option>
                         <option value="pop">Pop</option>
@@ -48,14 +54,32 @@
                         <option value="soul">Soul</option>
                         <option value="hiphop">Hiphop</option>
                         <option value="funk">Funk</option>
+                        <option value="punk">Punk</option>
                         <option value="indie">Indie</option>
                         <option value="electronic">Electronic</option>
                         <option value="folk">Folk</option>
                     </select>
-                    <input type="search" id="searchField" placeholder="search">
+                    
+                    <label for="sort">Sort by: </label>
+                        <select name="sort" id="sortBy">
+                            <option value="default" selected>Date added</option>
+                            <option value="name">Name</option>
+                            <option value="name-reverse">Name (reversed)</option>
+                            <option value="age">Age</option>
+                            <option value="activeSince">Active since</option>
+                        </select>
+                        
+                        <button name="change-btn" id="change-grid-btn">LIST VIEW</button>
+                        <input type="search" id="searchField" placeholder="search">
+                
                 </div>
-                <div id="main-content-grid">
+                <div id="main-content-grid" class="cardsView">
                     <p>Frontpage</p>
+                </div>
+            </div>
+            <div id="random-section" class="hidden">
+                <button id="new-random-artist-btn">New random artist</button> 
+                <div id="random-section-container">
                 </div>
             </div>
             <div id="create-section" class="hidden">
@@ -97,12 +121,8 @@
                     </div>
                 </div>
             </div>
-            <div id="edit-section" class="hidden">
-                <div class="content-grid-item">
-                    <p>Edit section</p>
-                </div>
-            </div>
             <div id="favorites-section" class="hidden">
+                
                 <div id="favorites-content-grid">
                     <p>Favorites</p>
                 </div>

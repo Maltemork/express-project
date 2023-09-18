@@ -8,9 +8,6 @@ import cors from "cors";
 // Define app.
 const app = express();
 
-// Define empty artists array for use when changing the artists JSON.
-let artists = [];
-
 // Use express and cors.
 app.use(express.json());
 app.use(cors({ credentials: true, origin: true }))
@@ -27,23 +24,29 @@ app.get("/artists", async (request, response) => {
     // Read the JSON file.
     const data = await fs.readFile("artists.json");
     // Parse the data
-    const artists = JSON.parse(data);
+    const artists = await JSON.parse(data);
     // Return the JSON data.
     return response.json(artists);
     });
 
 // Get request for a specific artist ID.
+app.get("/artists/random", async (request, response) => {
+  // Read the JSON file.
+  const data = await fs.readFile("artists.json");
+  // Parse the data
+  const artists = await JSON.parse(data);
+  // Get a random object from artists array.
+  const randomArtist = artists[Math.floor(Math.random()*artists.length)]; 
+  // Return the random JSON object.
+  return response.json(randomArtist);
+});
 
 app.get("/artists/:id", async (request, response) => {
   // Define ID.
     const id = Number(request.params.id);
-    // read file.
     const data = await fs.readFile("artists.json");
-    // parse JSON.
-    const artists = JSON.parse(data);
-    // Find artist with ID.
-    const result = artists.find(artist => artist.id == id);
-    // Respond with specified artist.
+    const artists = await JSON.parse(data);
+    const result = await artists.find(artist => artist.id == id);
     response.json(result);
     });
 
@@ -57,13 +60,14 @@ app.post("/artists", async (request, response) => {
     // Read the JSON file and define it as data.
     const data = await fs.readFile("artists.json");
     // Parse the JSON data.
-    const artists = JSON.parse(data);
+    const artists = await JSON.parse(data);
     // Push new artist into the JSON data.
     artists.push(newArtist);
     // Rewrite the JSON file so that it now include the new artist.
-    fs.writeFile("artists.json", JSON.stringify(artists));
+    await fs.writeFile("artists.json", JSON.stringify(artists));
     // Respond with new JSON file.
     response.json(artists);
+    console.log(`${newArtist.name} has been added to the server.`)
   });
 
 // DELETE request for a specific artist.
@@ -76,7 +80,7 @@ app.delete("/artists/:id", async (request, response) => {
     // Read the JSON file containing all artist.
     const data = await fs.readFile("artists.json");
     // Parse the JSON file.
-    const artists = JSON.parse(data);
+    const artists = await JSON.parse(data);
     
     // Make an array with every artist who does NOT have an ID equal to the deleted ID.
     const newArtists = artists.filter(artist => artist.id != id);
@@ -98,9 +102,9 @@ app.put("/artists/:id", async (request, response) => {
   // Define where we store JSON file and read the file.
   const data = await fs.readFile("artists.json");
   // Define all artists array.
-  const artists = JSON.parse(data);
+  const artists = await JSON.parse(data);
   // Find artist which needs to be sorted based on unique ID.
-  let artistToUpdate = artists.find(artist => artist.id == id);
+  let artistToUpdate = await artists.find(artist => artist.id == id);
   // Define the body of the request which will replace the values JSON file.
   const body = request.body;
   // Change the values.
@@ -114,7 +118,7 @@ app.put("/artists/:id", async (request, response) => {
   artistToUpdate.shortDescription = body.shortDescription;
   artistToUpdate.favorite = body.favorite;
   // Overwrite original array.
-  fs.writeFile("artists.json", JSON.stringify(artists));
+  await fs.writeFile("artists.json", JSON.stringify(artists));
   response.json();
 });
 
