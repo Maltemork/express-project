@@ -63,27 +63,7 @@ button:hover {
 
 /* HEADER SECTION */
 
-#searchField {
-    color: white;
-    height: 3em;
-    background-color: #557272;
-    border: 1px solid gray;
-    min-width: 50%;
-    margin: 0px auto;
-    position: relative;
-    padding-left: 10px;
-}
 
-#searchField::placeholder {
-    text-align: center;
-    color: rgb(118, 255, 209);
-}
-
-#filterArtists {
-    border-radius: 0;
-    height: 3em;
-    
-}
 
 
 /* Hidden class */

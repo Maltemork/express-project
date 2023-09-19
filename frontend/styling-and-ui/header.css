@@ -2,12 +2,40 @@
     color: rgb(118, 255, 209);
     
     display: flex;
-    flex: row wrap;
+    flex: nowrap;
+    gap: 20px;
+    align-self: center;
     align-items: center;
     align-content: center;
     justify-content: left;
-    font-size:larger;
-    padding: 20px 20px 20px 200px;
+    font-size: larger;
+    padding: 20px 200px 20px 200px;
+}
+
+#searchField {
+    color: white;
+    height: 3em;
+    background-color: #557272;
+    border: 1px solid gray;
+    width: 40%;
+    margin: 0px auto;
+    position: relative;
+    padding-left: 10px;
+}
+
+#searchField::placeholder {
+    text-align: center;
+    color: rgb(118, 255, 209);
+}
+
+#filterArtists {
+    border-radius: 0;
+    height: 3em;
+    
+}
+
+#sortBy {
+    width: 15em;
 }
 
 .header-icon {
@@ -21,8 +49,6 @@
 }
 
 #content-header select {
-    margin-right: 50px;
-    margin-left: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(118, 255, 209);
     border: 1px solid gray;
@@ -43,6 +69,7 @@
     height: 3em;
     width: 10em;
     margin: 0 auto;
+    padding-left: 1px;
 }
 
 

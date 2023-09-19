@@ -30,24 +30,41 @@ function sortArray(array) {
 
     const sortType = document.querySelector("#sortBy").value;
   
+    // Sort by date added
     if (sortType == "default") {
       displayArtists(array.sort((a, b) => b.id - a.id));
       console.log("Array has been sorted by ID.");
+    }
+    if (sortType == "default-reversed") {
+      displayArtists(array.sort((a, b) => a.id - b.id));
+      console.log("Array has been sorted by ID.");
+    }
+    // Sort by name
+    if (sortType == "name") {
+      displayArtists(array.sort((a, b) => a.name.localeCompare(b.name)));
+      console.log("Array has been sorted by name.");
     }
     if (sortType == "name-reverse") {
       displayArtists(array.sort((a, b) => b.name.localeCompare(a.name)));
       console.log("Array has been sorted by name (reversed).");
     }
-    if (sortType == "name") {
-      displayArtists(array.sort((a, b) => a.name.localeCompare(b.name)));
-      console.log("Array has been sorted by name.");
-    }
+    // Sort by age
     if (sortType == "age") {
       displayArtists(array.sort((a, b) => a.birthdate.localeCompare(b.birthdate)));
       console.log("Array has been sorted by age.");
     }
+    if (sortType == "age-reversed") {
+      displayArtists(array.sort((a, b) => b.birthdate.localeCompare(a.birthdate)));
+      console.log("Array has been sorted by age.");
+    }
+    // Sort by 'Active since'
     if (sortType == "activeSince") {
       displayArtists(array.sort((a, b) => a.activeSince - b.activeSince));
+      console.log("Array has been sorted by 'active since'.");
+    }
+
+    if (sortType == "activeSince-reversed") {
+      displayArtists(array.sort((a, b) => b.activeSince - a.activeSince));
       console.log("Array has been sorted by 'active since'.");
     }
   

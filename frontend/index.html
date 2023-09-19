@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Styling & UI/style.css">
-    <link rel="stylesheet" href="./Styling & UI/header.css">
-    <link rel="stylesheet" href="./Styling & UI/frontpage-section.css">
-    <link rel="stylesheet" href="./Styling & UI/random-section.css">
-    <link rel="stylesheet" href="./Styling & UI/favorites-section.css">
-    <link rel="stylesheet" href="./Styling & UI/edit-artist.css">
-    <link rel="stylesheet" href="./Styling & UI/delete-artist.css">
-    <link rel="stylesheet" href="./Styling & UI/new-artist.css">
-    <link rel="icon" type="image/png" href="./Styling & UI/favicon.png">
+    <link rel="stylesheet" href="./styling-and-ui/style.css">
+    <link rel="stylesheet" href="./styling-and-ui/header.css">
+    <link rel="stylesheet" href="./styling-and-ui/frontpage-section.css">
+    <link rel="stylesheet" href="./styling-and-ui/random-section.css">
+    <link rel="stylesheet" href="./styling-and-ui/favorites-section.css">
+    <link rel="stylesheet" href="./styling-and-ui/edit-artist.css">
+    <link rel="stylesheet" href="./styling-and-ui/delete-artist.css">
+    <link rel="stylesheet" href="./styling-and-ui/new-artist.css">
+    <link rel="icon" type="image/png" href="./styling-and-ui/favicon.png">
     <title>MusicoolioDB - Online database for music artists.</title>
 </head>
 <body>
@@ -19,28 +19,28 @@
         
             <div id="header" class="third-color">
                <div id="logo-header" class="header-item">
-                    <img src="./Styling & UI/logo.png" alt="logo" id="page-logo"/>
+                    <img src="./styling-and-ui/logo.png" alt="logo" id="page-logo"/>
                </div> 
                 
                 <div id="nav-frontpage" class="header-item clickable active">          
-                    <img src="./Styling & UI/icons/users-solid.svg" class="header-icon"/>
+                    <img src="./styling-and-ui/icons/users-solid.svg" class="header-icon"/>
                     <p>ARTISTS</p>
                 </div>
                 <div id="nav-music" class="header-item clickable">          
-                    <img src="./Styling & UI/icons/music-solid.svg" class="header-icon"/>
+                    <img src="./styling-and-ui/icons/music-solid.svg" class="header-icon"/>
                     <p>MUSIC</p>
                 </div>
                 <div id="nav-random" class="header-item clickable">          
-                    <img src="./Styling & UI/icons/shuffle-solid.svg" class="header-icon"/>
+                    <img src="./styling-and-ui/icons/shuffle-solid.svg" class="header-icon"/>
                     <p>RANDOM</p>
                 </div>
                 <div id="nav-create" class="header-item clickable" >
-                    <img src="./Styling & UI/icons/plus-solid.svg" class="header-icon"/>
+                    <img src="./styling-and-ui/icons/plus-solid.svg" class="header-icon"/>
                     <p>CREATE</p>
                 </div>
                 
                 <div id="nav-favorites" class="header-item clickable">
-                    <img src="./Styling & UI/icons/heart-solid.svg" class="header-icon"/>
+                    <img src="./styling-and-ui/icons/heart-solid.svg" class="header-icon"/>
                     <p>FAVORITES</p>
                 </div>
             </div>
@@ -50,40 +50,44 @@
             <div id="frontpage-section" class="fourth-color">
                 <div id="content-header">
                     <label for="filterArtists">Genre: </label>
-                    <select name="name" id="filterArtists">
-                        <option value="all">All</option>
+                    <select name="filterArtists" id="filterArtists">
+                        <option value="">All</option>
                         <option value="pop">Pop</option>
-                        <option value="alternative">Alternative</option>
+                        <option value="r&b">R&B</option>
+                        <option value="funk">Funk</option>
+                        <option value="hiphop">Hip-hop</option>
                         <option value="rock">Rock</option>
                         <option value="country">Country</option>
-                        <option value="r&b">R&B</option>
                         <option value="soul">Soul</option>
-                        <option value="hiphop">Hiphop</option>
-                        <option value="funk">Funk</option>
-                        <option value="punk">Punk</option>
-                        <option value="indie">Indie</option>
                         <option value="electronic">Electronic</option>
-                        <option value="folk">Folk</option>
+                        <option value="dubstep">Dubstep</option>
+                        <option value="alt-pop">Alt-pop</option>
                         <option value="psychedelic">Psychedelic</option>
+                        <option value="metal">Metal</option>
+                        <option value="house">House</option>
+                        <option value="alt-pop">Alt-pop</option>
                     </select>
                     
                     <label for="sort">Sort by: </label>
                         <select name="sort" id="sortBy">
                             <option value="default" selected>Date added</option>
+                            <option value="default-reversed" selected>Date added (reversed)</option>
                             <option value="name">Name</option>
                             <option value="name-reverse">Name (reversed)</option>
                             <option value="age">Age</option>
+                            <option value="age-reversed">Age (reversed)</option>
                             <option value="activeSince">Active since</option>
+                            <option value="activeSince-reversed">Active since (reversed)</option>
                         </select>
                         <input type="search" id="searchField" placeholder="Search artist">
-                        <button name="change-btn" id="change-grid-btn">LIST VIEW</button>
+                        <button name="change-btn" id="change-grid-btn">CHANGE VIEW</button>
                 </div>
                 <div id="main-content-grid" class="cardsView">
                     <p>Frontpage</p>
                 </div>
             </div>
             <div id="random-section" class="hidden">
-                <button id="new-random-artist-btn">New</button>
+                <button id="new-random-artist-btn">Refresh</button>
                 <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random artist:</h3>
                 <div id="random-section-container">
                 </div>
