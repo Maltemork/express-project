@@ -23,20 +23,24 @@
                </div> 
                 
                 <div id="nav-frontpage" class="header-item clickable active">          
-                    <h3>👁</h3>
-                    <p>ALL</p>
+                    <img src="./Styling & UI/icons/users-solid.svg" class="header-icon"/>
+                    <p>ARTISTS</p>
+                </div>
+                <div id="nav-music" class="header-item clickable">          
+                    <img src="./Styling & UI/icons/music-solid.svg" class="header-icon"/>
+                    <p>MUSIC</p>
                 </div>
                 <div id="nav-random" class="header-item clickable">          
-                    <h3>?</h3>
+                    <img src="./Styling & UI/icons/shuffle-solid.svg" class="header-icon"/>
                     <p>RANDOM</p>
                 </div>
                 <div id="nav-create" class="header-item clickable" >
-                    <h3 id="createIcon">➕</h3>
+                    <img src="./Styling & UI/icons/plus-solid.svg" class="header-icon"/>
                     <p>CREATE</p>
                 </div>
                 
                 <div id="nav-favorites" class="header-item clickable">
-                    <h3>♥</h3>
+                    <img src="./Styling & UI/icons/heart-solid.svg" class="header-icon"/>
                     <p>FAVORITES</p>
                 </div>
             </div>
@@ -45,11 +49,7 @@
             
             <div id="frontpage-section" class="fourth-color">
                 <div id="content-header">
-                    
-                    
-
-                    <input type="search" id="searchField" placeholder="Search artist">
-                    <label for="filterArtists">Filter artists: </label>
+                    <label for="filterArtists">Genre: </label>
                     <select name="name" id="filterArtists">
                         <option value="all">All</option>
                         <option value="pop">Pop</option>
@@ -75,18 +75,23 @@
                             <option value="age">Age</option>
                             <option value="activeSince">Active since</option>
                         </select>
-                        
+                        <input type="search" id="searchField" placeholder="Search artist">
                         <button name="change-btn" id="change-grid-btn">LIST VIEW</button>
-                        
-                
                 </div>
                 <div id="main-content-grid" class="cardsView">
                     <p>Frontpage</p>
                 </div>
             </div>
             <div id="random-section" class="hidden">
-                <button id="new-random-artist-btn">New random artist</button> 
+                <button id="new-random-artist-btn">New</button>
+                <h3 id="random-artist-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random artist:</h3>
                 <div id="random-section-container">
+                </div>
+                <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random album:</h3>
+                <div id="random-album-container">
+                </div>
+                <h3 id="random-album-title" style="color: white; margin-left: 220px; font-family:'Times New Roman', Times, serif; font-size: 30px;">Random track:</h3>
+                <div id="random-track-container">
                 </div>
             </div>
             <div id="create-section" class="hidden">

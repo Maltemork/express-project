@@ -26,10 +26,13 @@ async function startFunction() {
 
     artistsArray = await getArtists();
 
+    // Diplay artists
     filterInArray(artistsArray);
 
+    // Fills favorites array based on artist.favorite value.
     fillFavoritesArray(artistsArray);
 
+    // starts event listeners
     startEventListeners();
 
     document.querySelector("#filterArtists").addEventListener("change", () => {filterInArray(artistsArray)})
@@ -138,7 +141,7 @@ function displayArtists(list) {
             HTMLelement = /* HTML */ `
             <article class="list-item-artist" id="artist-${artist.id}">
                 <img src="${artist.image}"/>
-                <p>${artist.name}</p>
+                <h3>${artist.name}</h3>
                     
                     <p>${artist.shortDescription}</p>
                     <p>Born: ${artist.birthdate}</p>
@@ -146,7 +149,7 @@ function displayArtists(list) {
                     <p>${artist.genres} </p>
                     <p>Label(s): ${artist.label}</p>
                     
-                    <a href="${artist.website}">${artist.website}</a>
+                    <a href="${artist.website}">Website</a>
         
                     <div class="btns">
                         <button class="btn-update">🖊</button>
@@ -245,9 +248,12 @@ function editArtistClicked(artist) {
 
     //Makes sure you don't get the same artist twice.
     while (artistObject.id == previousArtistObject) {
+        console.log(previousArtistObject);
         artistObject = await getRandomArtist();
         console.log("Skipped duplicate artist.")
     }
+
+    console.log(`Fetched random artist ${artistObject.name} from server`);
 
     previousArtistObject = artistObject.id;
 
@@ -255,6 +261,7 @@ function editArtistClicked(artist) {
     <img src="${artistObject.image}"/>
     <div>
         <h3>${artistObject.name}</h3>
+        <a href="${artistObject.website}">${artistObject.website}</a>
         <p>${artistObject.shortDescription}</p>
         <ul>
             <li>Born on ${artistObject.birthdate}</li>
@@ -263,7 +270,7 @@ function editArtistClicked(artist) {
             <li>They have been signed to the record label(s) ${artistObject.label}.</li>
             <br/>
         </ul>
-        <a href="${artistObject.website}">${artistObject.website}</a>
+        
         <div class="3btn-holder">
         <button class="btn-favorite">♥</button>
     </div>

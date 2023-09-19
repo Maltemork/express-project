@@ -10,10 +10,15 @@
     gap: 12px;
 }
 
-.favorite-artist-card {
+.grid-item-artist.favorite-artist-card {
     z-index: 999;
-    box-shadow: 0px 0px 10px rgba(30, 255, 0, 0.685);
-    border: 1px solid rgb(0, 255, 0);
+    border-color:rgb(0, 255, 0);
+    box-shadow: 0px 0px 20px rgba(30, 255, 0, 0.685);
+}
+
+.list-item-artist.favorite-artist-card {
+    border: 2px solid rgb(0, 255, 0);
+    box-shadow: 0px 0px 6px rgba(30, 255, 0, 0.685);
 }
 
 @keyframes addToFavorites {
